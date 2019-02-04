@@ -11,6 +11,7 @@ const auth = require('./routes/auth');
 const users = require('./routes/users');
 const products = require('./routes/products');
 
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
@@ -22,6 +23,10 @@ app.use(function(req, res, next) {
 app.use('/api/auth', auth);
 app.use('/api/users', users);
 app.use('/api/products', products);
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log('listening to port')
