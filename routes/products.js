@@ -52,6 +52,24 @@ router.get('/', (req, res) => {
       // if (err) console.error(err, "ERRR")
       // res.send({lengh: obj.data.length});
     })
-})
+});
+
+router.get('/:id', (req,res) => {
+  jsonFile.readFile('test_data.json', function (err, obj) {
+    if(err){
+      res.status(500).send({success:false})
+    }
+    console.log('req',req);
+    const {id} = req.params;
+    const {data} = obj;
+    const query = data.filter(e=>e.product_id===id);
+
+    if(query.length === 0)
+      return res.status(404).send({success: false, message: "404 Not Found"});
+
+    res.send({success:true, product: query[0]});
+
+  });
+});
 
 module.exports = router;

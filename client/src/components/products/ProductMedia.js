@@ -16,10 +16,10 @@ class ProductMedia extends React.Component{
     const { sizes } = media[this.state.index]
     console.log('sizes[0].url',sizes[0].url);
     return (
-      <div>
+      <React.Fragment>
         <img src={sizes && sizes.length > 0 && sizes[0].url}
              className="media"/>
-      </div>
+      </React.Fragment>
     );
   }
 }

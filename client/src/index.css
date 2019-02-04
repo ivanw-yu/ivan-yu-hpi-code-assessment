@@ -33,6 +33,10 @@ body * {
   height: 300px;
   padding: 5px;
   border-radius: 5px;
+  position: relative;
+}
+.card *{
+  margin: 0;
 }
 
 .card img{
@@ -44,8 +48,19 @@ body * {
   width: 100%;
 }
 
+.card-link{
+  width:100%;
+  height:100%;
+  z-index: 1;
+  position: absolute;
+  top:0;
+  left: 0;
+  opacity: 0;
+}
+
 .background{
   width: 100%;
+  padding: 50px;
 }
 
 .centered-contents{
@@ -86,4 +101,61 @@ body * {
   background-color: #8080ff;
   color: white;
   box-shadow: 0px 0px 10px black;
+}
+
+.half-page-col{
+  width:50%;
+  float: left;
+}
+
+.product-media-area{
+  box-sizing: border-box;
+  padding: 50px;
+}
+
+.product-media{
+  width: 100%;
+  height: 400px;
+}
+
+.media {
+  width: 100%;
+  height: 100%;
+}
+
+.images-scroll-bar img{
+  display: inline;
+}
+.images-scroll-bar{
+  max-height: 100px;
+  background-color: #f2f2f2;
+  border-radius: 40px;
+  text-align: center;
+}
+
+.pagination-button{
+  border: none;
+  font-size: 30px;
+  background-color: inherit;
+}
+
+.active-button{
+  border-bottom: 1px solid #8080ff;
+}
+
+.pagination-button:hover{
+  cursor:pointer;
+}
+
+.pagination-button:focus{
+  outline: none;
+}
+
+.images-scroll-bar .scroll-image{
+  height: 100%;
+}
+
+.scroll-image{
+  width: 100px;
+  float: left;
 }

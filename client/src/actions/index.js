@@ -79,8 +79,16 @@ export const fetchProducts = (page=1, sort, ascending) => async dispatch => {
   }
 }
 
-export const fetchProduct = (product) => async dispatch => {
-
+export const fetchProduct = (id) => async dispatch => {
+  try{
+    const res = await axios(`/api/products/${id}`, {headers: getAuthHeaders()});
+    const {data} = res;
+    if(data && data.success){
+      return dispatch({type: FETCH_PRODUCT, payload: data.product});
+    }
+  }catch(e){
+    console.log("erereererer")
+  }
 }
 
 export const resetUsers = () => async dispatch => {
