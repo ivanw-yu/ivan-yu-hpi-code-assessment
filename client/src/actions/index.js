@@ -64,8 +64,19 @@ export const fetchUsers = () => async dispatch => {
   }
 }
 
-export const fetchProducts = (page=1) => async dispatch => {
+export const fetchProducts = (page=1, sort, ascending) => async dispatch => {
+  const url = `/api/products?sort=${sort ? sort : 'created_date'}&page=${page ? page : 1}`;
+  if(ascending)
+    url += `ascending=${ascending}`;
 
+  try{
+    const res = await axios(url, {headers: getAuthHeaders()});
+    if(res && res.data){
+      return dispatch({type: FETCH_PRODUCTS, payload: res.data});
+    }
+  }catch(e){
+
+  }
 }
 
 export const fetchProduct = (product) => async dispatch => {
