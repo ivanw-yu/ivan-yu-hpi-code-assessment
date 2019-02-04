@@ -7,7 +7,7 @@ const initialStates = {
 export default function(state = initialStates, action){
   switch(action.type){
     case FETCH_PRODUCTS:
-      return {...state, products: action.payload};
+      return {...state, products: action.payload, productsURL: action.payload.productsURL};
     case FETCH_PRODUCT:
       return {...state, product: action.payload};
     case RESET_PRODUCTS:

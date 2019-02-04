@@ -17,26 +17,11 @@ class ProductsListSortBar extends React.Component{
       ascending: false
     }
   }
-  //
-  // parseUrlPath(path){
-  //   const split = path.split('?'),
-  //         queryString = split.length > 1 ? split[1] : '',
-  //         keyValues = queryString.split('&')
-  //   const obj = {};
-  //   keyValues.forEach( e => {
-  //     e = e.split('=');
-  //     obj[e[0]] = e[1];
-  //   });
-  //
-  //   return [obj['sort'], obj['ascending'], obj['page']];
-  //
-  // }
 
   componentDidUpdate(prevProps, prevStates){
     const {sort, ascending} = this.state,
           {fetchProducts} = this.props;
     if(sort !== prevStates.sort || prevStates.ascending !== ascending){
-      console.log('fetching prod')
       fetchProducts(`sort=${sort}&ascending=${ascending}`);
       this.props.history.push(`/products?sort=${sort}&ascending=${ascending}`);
     }

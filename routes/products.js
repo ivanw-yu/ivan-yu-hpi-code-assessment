@@ -4,7 +4,7 @@ const authenticate = require('../middlewares/authenticate');
 const jsonFile = require('jsonfile');
 
 
-router.get('/', (req, res) => {
+router.get('/', authenticate, (req, res) => {
     jsonFile.readFile('test_data.json', function (err, obj) {
       if(err){
         res.status(500).send({success:false})
@@ -41,12 +41,11 @@ router.get('/', (req, res) => {
 
       data.sort(sortFunction);
       const startIndex = perItem * (page-1);
-      console.log(data);
       res.send({length: data.length, page, startIndex, products:data.slice()});
     })
 });
 
-router.get('/:id', (req,res) => {
+router.get('/:id', authenticate, (req,res) => {
   jsonFile.readFile('test_data.json', function (err, obj) {
     if(err){
       res.status(500).send({success:false})
