@@ -30,7 +30,6 @@ class LoginForm extends React.Component{
     const {name} = this.state,
           {loginUser, history} = this.props;
 
-    // if the name
     loginUser(name, history);
   }
 
@@ -44,7 +43,9 @@ class LoginForm extends React.Component{
                  value = {this.state.name}
                  name="name"
                  onChange={(e) => this.onChange(e.target.value)} />
-          <button className="theme">Submit</button>
+          <br />
+          <br />
+          <button className="theme-button">Submit</button>
         </div>
       </form>
     )

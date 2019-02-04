@@ -1,4 +1,4 @@
-import {LOGIN_USER} from '../actions/types';
+import {LOGIN_USER, LOGOUT_USER} from '../actions/types';
 
 const initialStates = {
   isLoggedIn: false,
@@ -10,6 +10,8 @@ export default function(state = initialStates, action){
   switch(action.type){
     case LOGIN_USER:
       return action.payload;
+    case LOGOUT_USER:
+      return {isLoggedIn: false, name: null, token: null};
     default:
       return state;
   }

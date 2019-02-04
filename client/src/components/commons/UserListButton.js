@@ -33,16 +33,17 @@ class UserListButton extends React.Component{
     const {users} = this.props;
     console.log("users", users);
     return users && users.map( user => (
-        <div id = {user._id}> {user.name} </div>
+        <div id = {user._id}> {user.first_name + ' ' + user.last_name} </div>
       )
     );
   }
 
   render(){
       const {users} = this.props;
+      console.log('users', users);
       return (
         <React.Fragment>
-          <button onClick = {()=>this.onUsersButtonClick(users)}>Users</button>
+          <button onClick = {()=>this.onUsersButtonClick()}>Users</button>
           {users && this.renderUserList()}
         </React.Fragment>
     );

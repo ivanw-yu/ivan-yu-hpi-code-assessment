@@ -8,7 +8,7 @@ export default function(state = initialStates, action){
   switch(action.type){
     case FETCH_USERS:
       console.log('action.payload', action.payload)
-      return action.payload;
+      return {users: action.payload};
     case RESET_USERS:
       return null;
     default:

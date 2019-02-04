@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 // import {withRouter} from 'react-router-dom';
 
-import {fetchUsers, resetUsers} from '../../actions/index';
+import {fetchUsers, resetUsers,logout} from '../../actions/index';
 import UserListButton from './UserListButton';
 
 class Navbar extends React.Component{
@@ -10,7 +10,8 @@ class Navbar extends React.Component{
   constructor(){
     super();
     this.state = {
-      userView : false
+      userView : false,
+      logoutView: false
     }
   }
   onUsersButtonClick(users){
@@ -53,8 +54,40 @@ class Navbar extends React.Component{
             </div>)
   }
 
+  getOrResetUsers(){
+    const {users} = this.props;
+    console.log('get or reset users', users)
+    if(!users)
+      return this.props.fetchUsers();
+
+    this.props.resetUsers();
+
+  }
+
+  logout(){
+    this.props.logout();
+  }
+  renderUsers(){
+    const {users} = this.props;
+    console.log('rendering users', users);
+    return users.map(user => (
+        <div key={user._id}>
+          {user.name}
+        </div>
+      )
+    )
+  }
+
+  openOrCloseLogout(){
+    this.setState((prevState, props) => ({
+      logoutView: !prevState.logoutView
+    }));
+  }
+
   render(){
-    const {auth,users, match} = this.props;
+    const { auth, users, match} = this.props,
+          { logoutView } = this.state;
+
     console.log("auth", auth);
     return (
       <nav className="navbar">
@@ -62,11 +95,29 @@ class Navbar extends React.Component{
           <React.Fragment>
             {this.renderBackButton()}
             <div className="nav-right">
-              <UserListButton />
+              <button onClick = {() => this.getOrResetUsers()}
+                      className = "nav-button">
+                {users === null ? 'See all users' : 'Hide user list' }
+              </button>
+              { users && (
+                  <div className="users-list">
+                    {this.renderUsers()}
+                  </div>
+                )
+              }
             </div>
-            <div className="nav-right">
+            <div className={"nav-right click-div " + (logoutView ? " navbar-active" :"")}
+                 onClick={()=>this.openOrCloseLogout()} >
               Welcome, {auth.name}!
+              { logoutView && (
+                  <div>
+                    <button className="logout-button"
+                            onClick={() => this.logout()}> Logout</button>
+                  </div>
+                )
+              }
             </div>
+
           </React.Fragment>
         )
       }
@@ -76,7 +127,8 @@ class Navbar extends React.Component{
 }
 
 const mapStateToProps = state => ({ auth: state.auth,
+                                    users: state.users && state.users.users,
                                     productsURL: state.products && state.products.products.productsURL,
                                     product: state.products.product});
 // export default connect(mapStateToProps)(Navbar);
-export default connect(mapStateToProps, {fetchUsers, resetUsers})(Navbar);
+export default connect(mapStateToProps, {fetchUsers, resetUsers, logout})(Navbar);

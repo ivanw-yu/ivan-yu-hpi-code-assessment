@@ -101,6 +101,12 @@ export const fetchProduct = (id) => async dispatch => {
   }
 }
 
+export const logout = () => async dispatch => {
+  localStorage.removeItem('user');
+  dispatch({type: LOGOUT_USER, payload: null});
+  window.location.href = "/";
+}
+
 export const resetUsers = () => async dispatch => {
   dispatch({type: RESET_USERS, payload: []});
 }
