@@ -8,6 +8,8 @@ mongoose.connect(db.url, { useNewUrlParser: true});
 
 const port = process.env.PORT || 4000;
 const auth = require('./routes/auth');
+const users = require('./routes/users');
+const products = require('./routes/products');
 
 app.use(bodyParser.json());
 
@@ -18,6 +20,8 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api/auth', auth);
+app.use('/api/users', users);
+app.use('/api/products', products);
 
 app.listen(port, () => {
   console.log('listening to port')

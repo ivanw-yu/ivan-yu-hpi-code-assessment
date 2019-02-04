@@ -5,9 +5,10 @@ module.exports = async (req,res,next) => {
     const token = req.header('token');
     const user = await User.findOne({token});
     if(user){
+      console.log('user1',user)
       req.user = user;
       req.token = token;
-      next()
+      return next();
     }
     res.status(401).send({success: false, message: "401 Unauthorized"});
   }catch(e){

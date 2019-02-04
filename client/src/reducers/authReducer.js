@@ -4,7 +4,7 @@ const initialStates = {
   isLoggedIn: false,
   name: null,
   token: null
-}
+};
 
 export default function(state = initialStates, action){
   switch(action.type){

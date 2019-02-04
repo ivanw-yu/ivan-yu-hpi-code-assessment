@@ -20,6 +20,7 @@ router.post('/login', async (req, res) => {
 router.get('/verify', authenticate, (req, res) => {
   // if it passes the authenticate middleware, this means
   // that the user is logged in.
+  console.log('req.user',req.user)
   res.send({success: true, user: req.user});
 });
 
