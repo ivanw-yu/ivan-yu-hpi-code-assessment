@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const data = require('../test_data');
 const dataFile = '../test_data.json';
 const authenticate = require('../middlewares/authenticate');
 const jsonFile = require('jsonfile');
@@ -22,8 +21,6 @@ router.get('/', (req, res) => {
       switch(sort){
         case "created_at":
           sortFunction = (a,b) => {
-            // Turn your strings into dates, and then subtract them
-            // to get a value that is either negative, positive, or zero.
             return (new Date(b.created_at) - new Date(a.created_at)) *multiplier;
           }
           break;
@@ -44,12 +41,8 @@ router.get('/', (req, res) => {
 
       data.sort(sortFunction);
       const startIndex = perItem * (page-1);
-      const products = data.slice()//data.slice(startIndex, startIndex + perItem);
-      res.send({length: products.length,page,startIndex,products:data.slice(), length: products.length});
-
-      // console.log("JSON READFILE")
-      // if (err) console.error(err, "ERRR")
-      // res.send({lengh: obj.data.length});
+      console.log(data);
+      res.send({length: data.length, page, startIndex, products:data.slice()});
     })
 });
 

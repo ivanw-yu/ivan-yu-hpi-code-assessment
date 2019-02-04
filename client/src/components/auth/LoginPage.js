@@ -1,21 +1,12 @@
 import React from 'react';
-// import {connect} from 'react-redux';
-//
-// import {loginUser} from '../../actions';
-import LoginForm from './LoginForm';
 
+import LoginForm from './LoginForm';
+import Footer from '../commons/Footer';
 export default () => (
-  <div className = "background centered-contents">
-    <LoginForm />
-  </div>
+  <React.Fragment>
+    <div className = "background centered-contents">
+      <LoginForm />
+    </div>
+    <Footer />
+  </React.Fragment>
 );
-// class LoginPage extends React.Component{
-//
-//   render(){
-//     return (
-//       <div className = "background">
-//         <LoginForm />
-//       </div>
-//     );
-//   }
-// }

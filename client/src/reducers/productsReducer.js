@@ -9,7 +9,6 @@ export default function(state = initialStates, action){
     case FETCH_PRODUCTS:
       return {...state, products: action.payload};
     case FETCH_PRODUCT:
-      console.log("FETCH_PRODUCT", action.payload)
       return {...state, product: action.payload};
     case RESET_PRODUCTS:
       return {...state, products: []};

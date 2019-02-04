@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-// import {withRouter} from 'react-router-dom';
 
 import {fetchUsers, resetUsers,logout} from '../../actions/index';
 import UserListButton from './UserListButton';
@@ -29,7 +28,6 @@ class Navbar extends React.Component{
 
   renderUserList(){
     const {users} = this.props;
-    console.log("users", users);
     return users.map( user => (
         <div id = {user._id}> {user.name} </div>
       )
@@ -40,12 +38,8 @@ class Navbar extends React.Component{
     const {history,productsURL} = this.props;
     window.location.href = productsURL;
   }
-  // navigateProductsListPage(){
-  //
-  // }
 
   renderBackButton(){
-    console.log('window.location.pathname',window.location.pathname, /\/products\/[a-zA-Z0-9]+/.test(window.location.pathname))
     return this.props.product && ( <div className="nav-left">
               <button className="nav-button"
                       onClick={()=>this.navigateProductsListPage()}>
@@ -56,7 +50,6 @@ class Navbar extends React.Component{
 
   getOrResetUsers(){
     const {users} = this.props;
-    console.log('get or reset users', users)
     if(!users)
       return this.props.fetchUsers();
 
@@ -88,7 +81,6 @@ class Navbar extends React.Component{
     const { auth, users, match} = this.props,
           { logoutView } = this.state;
 
-    console.log("auth", auth);
     return (
       <nav className="navbar">
         { auth && auth.name && (
@@ -130,5 +122,5 @@ const mapStateToProps = state => ({ auth: state.auth,
                                     users: state.users && state.users.users,
                                     productsURL: state.products && state.products.products.productsURL,
                                     product: state.products.product});
-// export default connect(mapStateToProps)(Navbar);
+
 export default connect(mapStateToProps, {fetchUsers, resetUsers, logout})(Navbar);

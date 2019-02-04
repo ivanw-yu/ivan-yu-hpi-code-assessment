@@ -3,7 +3,6 @@ import {BrowserRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Routes from './Routes';
 import Navbar from './components/commons/Navbar';
-import Footer from './components/commons/Footer';
 import {authenticate} from './actions';
 
 import './App.css';
@@ -11,6 +10,9 @@ import './App.css';
 class App extends React.Component {
 
   componentDidMount(){
+      // every time the App loads on the screen, authenticate will be
+      // called to put the credentials from the localStorage to
+      // into the redux store.
       this.props.authenticate();
   }
 
@@ -23,7 +25,6 @@ class App extends React.Component {
             <Routes />
           </React.Fragment>
         </BrowserRouter>
-        <Footer />
       </div>
     );
   }

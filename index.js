@@ -12,7 +12,7 @@ const auth = require('./routes/auth');
 const users = require('./routes/users');
 const products = require('./routes/products');
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
@@ -30,5 +30,5 @@ app.get('/*', function (req, res) {
 });
 
 app.listen(port, () => {
-  console.log('listening to port')
+  console.log('listening to port ' + port);
 });

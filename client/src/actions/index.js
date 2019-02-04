@@ -39,17 +39,15 @@ export const loginUser = (name, history) => async dispatch => {
 // refresh, or when another url is visited from the address bar.
 export const authenticate = () => async dispatch => {
   try{
-    const user = getAuthUser()//localStorage.getItem('user');
-    console.log("ERE", user, user.token)
+    const user = getAuthUser();
     const res = await axios.get(`/api/auth/verify`, {headers: getAuthHeaders() });
     if(res.data && res.data.success){
       delete res.data.success;
       const auth = {...res.data.user};
-      console.log("HERE!", auth)
       dispatch({type: LOGIN_USER, payload: auth});
     }
   }catch(e){
-
+    console.log(e);
   }
   return false;
 };
@@ -57,7 +55,6 @@ export const authenticate = () => async dispatch => {
 export const fetchUsers = () => async dispatch => {
   try{
     const res = await axios('/api/users', {headers: getAuthHeaders()});
-    console.log("FETCH_USERS", res);
     if(res && res.data){
       dispatch({type: FETCH_USERS, payload: res.data.users});
     }
@@ -66,12 +63,8 @@ export const fetchUsers = () => async dispatch => {
   }
 }
 
-export const fetchProducts = (/*sort='created_at', ascending=false, page=1*/queryString) => async dispatch => {
+export const fetchProducts = (queryString) => async dispatch => {
   const url = `/api/products${queryString && queryString.length > 1 ? '?' + queryString : ''}`;
-  //console.log('fetch products url', `/api/products?sort=${sort ? sort : 'created_date'}&page=${page ? page : 1}`)
-  //const url = `/api/products?sort=${sort ? sort : 'created_date'}&page=${page ? page : 1}`;
-  // if(ascending)
-  //   url += `ascending=${ascending}`;
 
   try{
     const res = await axios(url, {headers: getAuthHeaders()});
@@ -79,7 +72,7 @@ export const fetchProducts = (/*sort='created_at', ascending=false, page=1*/quer
       return dispatch({type: FETCH_PRODUCTS, payload: {...res.data, productsURL:window.location.pathname}});
     }
   }catch(e){
-
+    console.log(e);
   }
 }
 export const resetProducts = () => dispatch => {
@@ -97,7 +90,7 @@ export const fetchProduct = (id) => async dispatch => {
       return dispatch({type: FETCH_PRODUCT, payload: data.product});
     }
   }catch(e){
-    console.log("erereererer")
+    console.log(e)
   }
 }
 

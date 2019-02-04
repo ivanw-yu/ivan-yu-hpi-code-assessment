@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default () => (
-  <div className ="footer">
+  <footer className ="footer">
     Ivan Yu
-  </div>
+  </footer>
 )
