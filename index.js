@@ -6,7 +6,7 @@ const app = express();
 const db = require('./config/db');
 mongoose.connect(db.url, { useNewUrlParser: true});
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const auth = require('./routes/auth');
 
 app.use(bodyParser.json());
