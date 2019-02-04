@@ -5,6 +5,7 @@ import React from 'react';
 export default ({imageUrl}) => (
       <React.Fragment>
         <img src={imageUrl}
-             className="media"/>
+             className="media"
+             key={imageUrl}/>
       </React.Fragment>
 );

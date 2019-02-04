@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       let {page} = req.query;
       page = page && !isNaN(Number(page)) ? Number(page) : 1;
       const {data} = obj;
-      const multiplier = ascending ? -1:1;
+      const multiplier = ascending === 'true' ? -1:1;
       const perItem = 25;
       const type = typeof data[0][sort];
 
@@ -44,8 +44,8 @@ router.get('/', (req, res) => {
 
       data.sort(sortFunction);
       const startIndex = perItem * (page-1);
-      const products = data.slice(startIndex, startIndex + perItem);
-      res.send({length: products.length,page,startIndex,products, length: products.length});
+      const products = data.slice()//data.slice(startIndex, startIndex + perItem);
+      res.send({length: products.length,page,startIndex,products:data.slice(), length: products.length});
 
       // console.log("JSON READFILE")
       // if (err) console.error(err, "ERRR")

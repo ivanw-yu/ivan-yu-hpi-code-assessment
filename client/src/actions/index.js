@@ -5,6 +5,7 @@ import { LOGIN_USER,
          FETCH_PRODUCTS,
          FETCH_PRODUCT,
          RESET_PRODUCT,
+         RESET_PRODUCTS,
          FETCH_USERS,
          RESET_USERS} from './types';
 
@@ -65,10 +66,12 @@ export const fetchUsers = () => async dispatch => {
   }
 }
 
-export const fetchProducts = (page=1, sort, ascending) => async dispatch => {
-  const url = `/api/products?sort=${sort ? sort : 'created_date'}&page=${page ? page : 1}`;
-  if(ascending)
-    url += `ascending=${ascending}`;
+export const fetchProducts = (/*sort='created_at', ascending=false, page=1*/queryString) => async dispatch => {
+  const url = `/api/products${queryString && queryString.length > 1 ? '?' + queryString : ''}`;
+  //console.log('fetch products url', `/api/products?sort=${sort ? sort : 'created_date'}&page=${page ? page : 1}`)
+  //const url = `/api/products?sort=${sort ? sort : 'created_date'}&page=${page ? page : 1}`;
+  // if(ascending)
+  //   url += `ascending=${ascending}`;
 
   try{
     const res = await axios(url, {headers: getAuthHeaders()});
@@ -79,7 +82,9 @@ export const fetchProducts = (page=1, sort, ascending) => async dispatch => {
 
   }
 }
-
+export const resetProducts = () => dispatch => {
+  dispatch({type:RESET_PRODUCTS, payload: null});
+}
 export const resetProduct = () => dispatch => {
   dispatch({type:RESET_PRODUCT, payload: null});
 }

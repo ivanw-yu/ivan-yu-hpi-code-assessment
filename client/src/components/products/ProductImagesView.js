@@ -25,7 +25,6 @@ class ProductImagesView extends React.Component{
         images = [...images, ...imagesArray];
       });
 
-      console.log('componentDidMount images', images);
       this.setState({images, count: images.length});
     }
 

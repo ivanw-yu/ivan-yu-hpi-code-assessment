@@ -1,18 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {fetchProducts} from '../../actions';
+import {fetchProducts, resetProducts} from '../../actions';
 import ProductCard from './ProductCard';
 
-export default ({products}) => (
-  products && (
-    products.map(product => (
-        <ProductCard product = {product}
-                     id = {product.product_id}/>
+class ProductsList extends React.Component{
+
+  componentWillUnmount(){
+    console.log("unmounting");
+  }
+  render(){
+    const {products} = this.props;
+    return products && (
+      products.map(product => (
+          <ProductCard product = {product}
+                       id = {product.product_id}/>
+        )
       )
     )
-  )
-);
+  }
+}
+
+export default connect(null,{resetProducts})(ProductsList);
 
 
 
