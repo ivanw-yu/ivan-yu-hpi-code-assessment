@@ -9,4 +9,5 @@ class Navbar extends React.Component{
 }
 
 const mapStateToProps = state => ({});
-export default connect(mapStateToProps)(Navbar);
+// export default connect(mapStateToProps)(Navbar);
+export default Navbar;
