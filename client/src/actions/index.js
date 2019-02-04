@@ -4,6 +4,7 @@ import { LOGIN_USER,
          LOGOUT_USER,
          FETCH_PRODUCTS,
          FETCH_PRODUCT,
+         RESET_PRODUCT,
          FETCH_USERS,
          RESET_USERS} from './types';
 
@@ -72,11 +73,15 @@ export const fetchProducts = (page=1, sort, ascending) => async dispatch => {
   try{
     const res = await axios(url, {headers: getAuthHeaders()});
     if(res && res.data){
-      return dispatch({type: FETCH_PRODUCTS, payload: res.data});
+      return dispatch({type: FETCH_PRODUCTS, payload: {...res.data, productsURL:window.location.pathname}});
     }
   }catch(e){
 
   }
+}
+
+export const resetProduct = () => dispatch => {
+  dispatch({type:RESET_PRODUCT, payload: null});
 }
 
 export const fetchProduct = (id) => async dispatch => {

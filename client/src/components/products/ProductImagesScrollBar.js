@@ -13,18 +13,18 @@ class ProductImagesScrollBar extends React.Component{
     //   // };
     // }
 
-    componentDidMount(){
-      const {media} = this.props;
-      const imagesNestedArrays = media.map(m => [...m.sizes]);
-      console.log("MEDIA", media)
-      let images = [];
-      imagesNestedArrays.forEach(imagesArray => {
-        images = [...images, ...imagesArray];
-      });
-
-      console.log('images', images);
-      this.setState({images, count: images.length});
-    }
+    // componentDidMount(){
+    //   // const {media} = this.props;
+    //   // const imagesNestedArrays = media.map(m => [...m.sizes]);
+    //   // console.log("MEDIA", media)
+    //   // let images = [];
+    //   // imagesNestedArrays.forEach(imagesArray => {
+    //   //   images = [...images, ...imagesArray];
+    //   // });
+    //   //
+    //   // console.log('images', images);
+    //   // this.setState({images, count: images.length});
+    // }
 
     // renderImageList(){
     //   const {images} = this.state;

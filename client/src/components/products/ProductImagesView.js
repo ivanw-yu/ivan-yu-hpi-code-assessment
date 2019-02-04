@@ -13,7 +13,7 @@ class ProductImagesView extends React.Component{
         index: 0,
         count: null
       };
-
+      console.log("CONSTRUCTOR CALL")
       this.onImageChange = this.onImageChange.bind(this);
     }
 
@@ -25,7 +25,7 @@ class ProductImagesView extends React.Component{
         images = [...images, ...imagesArray];
       });
 
-      console.log('images', images);
+      console.log('componentDidMount images', images);
       this.setState({images, count: images.length});
     }
 

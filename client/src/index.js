@@ -6,7 +6,9 @@ import './index.css';
 import App from './App';
 import store from './store';
 // import * as serviceWorker from './serviceWorker';
-
+// import { unregister as unregisterServiceWorker } from './registerServiceWorker'
+//
+// unregisterServiceWorker();
 ReactDOM.render(<Provider store={store}>
   <App />
 </Provider>, document.getElementById('root'));

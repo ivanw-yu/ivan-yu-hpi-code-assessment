@@ -5,7 +5,6 @@ const authenticate = require('../middlewares/authenticate');
 router.get('/', authenticate, async (req, res)=>{
   try{
     const users = await User.find();
-    console.log('***users',users)
     res.send({success: true, users});
   }catch(e){
     res.status(401).send({success: false});

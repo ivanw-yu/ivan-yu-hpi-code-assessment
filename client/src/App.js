@@ -18,7 +18,9 @@ class App extends React.Component {
       <div className = "container">
         <Navbar />
         <BrowserRouter>
-          <Routes />
+          <React.Fragment>
+            <Routes />
+          </React.Fragment>
         </BrowserRouter>
       </div>
     );

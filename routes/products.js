@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
       const type = typeof data[0][sort];
 
       let sortFunction;
-      console.log("sort", sort)
       switch(sort){
         case "created_at":
           sortFunction = (a,b) => {
@@ -59,7 +58,6 @@ router.get('/:id', (req,res) => {
     if(err){
       res.status(500).send({success:false})
     }
-    console.log('req',req);
     const {id} = req.params;
     const {data} = obj;
     const query = data.filter(e=>e.product_id===id);

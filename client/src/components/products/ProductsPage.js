@@ -6,6 +6,7 @@ import ProductsList from './ProductsList';
 class ProductsPage extends React.Component{
 
   componentDidMount(){
+    console.log("componentDidMount");
     this.props.fetchProducts();
   }
 

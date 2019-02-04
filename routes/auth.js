@@ -4,9 +4,7 @@ const authenticate = require('../middlewares/authenticate');
 
 router.post('/login', async (req, res) => {
   try{
-    console.log(req.body);
     const user = new User({name: req.body.name});
-    console.log("here");
     const newUser = await user.save();
     res.send({success: true, user: newUser});
   }catch(e){
@@ -20,7 +18,6 @@ router.post('/login', async (req, res) => {
 router.get('/verify', authenticate, (req, res) => {
   // if it passes the authenticate middleware, this means
   // that the user is logged in.
-  console.log('req.user',req.user)
   res.send({success: true, user: req.user});
 });
 
